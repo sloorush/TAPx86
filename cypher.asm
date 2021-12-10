@@ -1,4 +1,4 @@
-include 'emu8086.inc' ; Includes some common functions
+include 'emu8086.inc' 
 
 org 100h
 
@@ -8,9 +8,16 @@ org 100h
 MOV CX, 26   ; Size of letters in the alphabet
 MOV AL, 61h  ; ASCII code for letter 'a'
 MOV DI, 400h ; Hold the offset of memory location in the ES  
-CLD ; DF = 0 
+CLD ; DF = 0
+ 
 store_letters:  
-STOSB ; Copies a byte from AL to a memory location in ES. DI is used to hold the offset of the memory location in the ES. After the copy, DI is automatically incremented or decremented to point to the next string element in memory.   
+STOSB
+ 
+; Copies a byte from AL to a memory location in ES. 
+; DI is used to hold the offset of the memory location in the ES. 
+; After the copy, DI is automatically incremented or decremented 
+; to point to the next string element in memory.   
+
 INC AL ; Increases AL value by 1, therefore changing the letter 
 LOOP store_letters ; Loops if CX after decrementing by 1 not equal 0
 
@@ -30,7 +37,7 @@ LOOP store_numbers
 ; Displays welcome message
 LEA DX, welcome_msg
 MOV AH, 9 ; Selecting the sub-function
-INT 21h ; Function that outputs a string at DS:DX. String must be terminated by '$'
+INT 21h ; Function that outputs a string at DS:DX. 
     
 ; Displays welcome message
 LEA DX, welcome_msg2
@@ -76,6 +83,7 @@ next_char:
 	CMP AL, 'z'
 	JA  next_char 
 	XLATB     ; Encrypt 
+
 forspace:	
     MOV [SI-1], AL
 	MOV AH,0 	
