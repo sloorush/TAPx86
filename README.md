@@ -1,6 +1,6 @@
 # TAPx86
 
-> Remember complex passwords Ez
+> Mononumeric Encryption for 8086
 
 This simple encryption program is made for the 8086 microprocessor.
 In the encryption, each alphabetic letter is substituted by a
